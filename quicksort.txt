@@ -1,0 +1,45 @@
+#include<stdio.h>
+void quick_sort(int A[],int start,int end);
+int partition ( int A[],int start,int end);
+ 
+int main ()
+{
+int i,count;
+scanf("%d\n",&count);
+int number[count];
+for(i=0;i<count;i++)
+{
+scanf("%d",&number[i]);
+}
+quick_sort(number,0,count-1);
+for(i=0;i<count;i++){
+printf("%d ",number[i]);
+}
+ 
+}
+int partition(int A[],int start,int end)
+{
+int i,t,j;
+i = start -1 ;
+int piv = A[end];
+for(j=start; j<=end ; j++)
+{
+if(A[j] <= piv)
+{
+i=i+1;
+t=A[i];
+A[i] = A[j];
+A[j] = t;
+}
+}
+return i;
+}
+void quick_sort(int A[],int start,int end)
+{
+if(start < end)
+{
+int piv_position = partition(A,start,end);
+quick_sort(A,start,piv_position-1);
+quick_sort(A,piv_position+1,end);
+}
+}
